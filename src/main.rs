@@ -5,7 +5,7 @@ use std::path::{Path, PathBuf};
 use std::process::{Command, Stdio};
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
-use std::{env, thread};
+use std::{default, env, thread};
 use std::{error::Error, io};
 
 use clap::Parser;
@@ -21,6 +21,7 @@ use ratatui::crossterm::{
 use ratatui::prelude::*;
 use ratatui::widgets::ScrollbarState;
 use regex::Regex;
+use strum::{EnumIter, FromRepr};
 use tui_input::backend::crossterm::EventHandler;
 use tui_input::Input;
 
@@ -98,7 +99,9 @@ struct Args {
     thirty_two_bit: bool,
 }
 
+#[derive(Clone, Copy, Default, EnumIter, FromRepr)]
 enum Mode {
+    #[default]
     All,
     OnlyRegister,
     OnlyStack,

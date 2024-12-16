@@ -28,6 +28,7 @@ pub fn draw_title_area(app: &App, f: &mut Frame, title_area: Rect) {
         first,
     );
     // Title Area
+    // Render tabs
     let (mut msg, style) = match app.input_mode {
         InputMode::Normal => (
             vec![
